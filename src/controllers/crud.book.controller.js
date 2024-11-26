@@ -123,3 +123,36 @@ export const deleteBook = async(req, res) =>{
         res.status(500).json({ ok: false, message: "Failed to delete book" });
     }
 }
+
+export const searchBooksBy = async(req, res) =>{
+    const { title, genre, author } = req.query;
+
+    try {
+        if(!title && !genre && !author){ return res.status(400).json({ ok:false, message: "No parameters given" }); }
+
+        const books = await prisma.book.findMany({
+            where: {
+                title: title ? { contains: title } : undefined,
+                genre: genre ? { contains: genre } : undefined,
+                author: author
+                    ? {
+                        OR: [
+                            { firstName: { contains: author } },
+                            { lastName: { contains: author } },
+                        ],
+                    }
+                : undefined,
+            },
+            include: { author: true },
+        });
+
+        if (books.length === 0) {
+            return res.status(404).json({ ok: false, message: "No books found" });
+        }
+      
+        res.status(200).json({ ok: true, message: books });
+    } catch (error) {
+        console.error("Error searching books:", error);
+        res.status(500).json({ ok: false, message: "Failed to search books" });
+    }
+}

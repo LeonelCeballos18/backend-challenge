@@ -139,7 +139,17 @@
 					"name": "gell_all_books",
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "{{domain}}/api/books",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"books"
+							]
+						}
 					},
 					"response": []
 				},
@@ -186,6 +196,14 @@
 								"books"
 							]
 						}
+					},
+					"response": []
+				},
+				{
+					"name": "search_filtering",
+					"request": {
+						"method": "GET",
+						"header": []
 					},
 					"response": []
 				}
