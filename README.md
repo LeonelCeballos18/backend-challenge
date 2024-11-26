@@ -1,7 +1,5 @@
 1. Instalar dependencias.
    `npm i`
-2. Iniciar servidor de desarrollo.
-   `npm run dev`
 2. Configurar variables de entorno.
    1. Copiar *.env.template* a *.env.*
    2. Editar *.env* con las variables necesarias.
