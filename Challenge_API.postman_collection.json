@@ -162,14 +162,6 @@
 					"response": []
 				},
 				{
-					"name": "get_book",
-					"request": {
-						"method": "GET",
-						"header": []
-					},
-					"response": []
-				},
-				{
 					"name": "update_book",
 					"request": {
 						"method": "PUT",
