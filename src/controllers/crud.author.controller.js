@@ -43,9 +43,30 @@ export const createAuthor = async(req, res) =>{
     }
 }
 
+export const getAuthor = async(req, res) =>{
+    const { author_id } =  req.params;
+    try {
+        if(!author_id){ return res.status(400).json({ ok:false, message: "No author given" }); }
+
+        const author = await prisma.author.findUnique({
+            where: { author_id: author_id },
+            include: {
+                books: true
+            },
+        });
+        
+        if(!author){ return res.status(404).json({ok: false, message: "Author not found"}); }
+
+        res.status(200).json({ ok:true, message: author });
+    } catch (error) {
+        console.error("Error fetching author:", error);
+        res.status(500).json({ok: false, message: "Failed to fetch author"});
+    }
+}
+
 export const getAllAuthors = async(req, res) =>{
     try {
-        const authors = await prisma.author.findMany();
+        const authors = await prisma.author.findMany({ include: { books: true } });
 
         if(authors.length === 0){ return res.status(404).json({ ok:false, message: "No authors found" }); }
 
