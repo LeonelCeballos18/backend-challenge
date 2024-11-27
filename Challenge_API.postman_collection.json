@@ -56,6 +56,14 @@
 					"response": []
 				},
 				{
+					"name": "get_author",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
 					"name": "update_author",
 					"request": {
 						"method": "PUT",
@@ -150,6 +158,14 @@
 								"books"
 							]
 						}
+					},
+					"response": []
+				},
+				{
+					"name": "get_book",
+					"request": {
+						"method": "GET",
+						"header": []
 					},
 					"response": []
 				},
